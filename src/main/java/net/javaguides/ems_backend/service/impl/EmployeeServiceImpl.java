@@ -1,7 +1,5 @@
-package net.javaguides.ems_backend.service.impl;
+package net.javaguides.ems_backend.service.impl; // ✅ Ensure this is correct
 
-
-import lombok.AllArgsConstructor;
 import net.javaguides.ems_backend.dto.EmployeeDto;
 import net.javaguides.ems_backend.entity.Employee;
 import net.javaguides.ems_backend.mapper.EmployeeMapper;
@@ -9,10 +7,16 @@ import net.javaguides.ems_backend.repository.EmployeeRepository;
 import net.javaguides.ems_backend.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+
 @Service
-@AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeRepository employeeRepository;
+
+    private final EmployeeRepository employeeRepository;
+
+    // ✅ Explicit constructor injection
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
